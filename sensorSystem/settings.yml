@@ -13,7 +13,7 @@ Resources:
       #choose from DEBUG, INFO, WARNING, or ERROR
       logLevel: INFO
       logFormat: "%(asctime)s %(levelname)s %(message)s"
-      logFile: "/home/pi/C3lessSensorSystem/log"
+      logFile: "/home/pi/C3lessSensorSystem/sensorSystem/log"
 
   AWSIoT:
     #使用する場合はTrueにする。使用しない場合はFalse.以下同様
