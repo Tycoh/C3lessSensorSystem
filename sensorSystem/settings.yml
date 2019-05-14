@@ -32,9 +32,9 @@ Resources:
       APIKey: ""
   
   LocalSave:
-    Usage: False
+    Usage: True
     Parameters:  
-      CalcData: False
+      CalcData: True
       #USBメモリなど外部ストレージをマウントする場合は、/media/pi
       SavePath: '/media/pi'
       #SavePathで指定したディレクトリに直接保存するかどうか設定する。
