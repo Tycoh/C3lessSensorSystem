@@ -123,19 +123,20 @@ except Exception as e:
     sys.exit()
 
 def main():
-    S=sensor.serial_check.serial_check(devicePath="ttyUSB*")
-    #get serial port 
-    port=S.get_port()
-    S=None
-    text='setting up serial port\n' + \
-         'speed is ' + str(speed) + ',\n' + \
-         'time out time is ' + str(timeout_time) +',\n'+\
-         'port if ' + str(port)
-    logging.info(text)
-    ser=serial.Serial(port,speed,timeout=timeout_time)
-    
     try:
+        S=sensor.serial_check.serial_check(devicePath="ttyUSB*")
+        #get serial port 
+        port=S.get_port()
+        S=None
+        text='setting up serial port\n' + \
+            'speed is ' + str(speed) + ',\n' + \
+            'time out time is ' + str(timeout_time) +',\n'+\
+            'port if ' + str(port)
+        logging.info(text)
+        ser=serial.Serial(port,speed,timeout=timeout_time)
+        logging.info("start main loop")
         while(1):
+            
             value = ser.readline()
             data=sensor.sensor_data_process.sensor_data(value)
             if data.is_data()==True:
