@@ -180,10 +180,11 @@ def main():
             
 
     except  Exception as e:
-        ser.close()
         Err=traceback.format_exc()
         logging.error(e)
         logging.error(Err)
+        ser.close()
+        
 
         sys.exit(0)
 
