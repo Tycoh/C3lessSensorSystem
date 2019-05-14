@@ -94,9 +94,9 @@ try:
     isCalcLocal=False
     if LocalUsage==True:
         logging.info('setting up local save')
-        useMedia=settings.getSaveDirectly()
-        if useMedia==True: savePath=getPath.getSavePath(settings.getLocalSavePath())
-        if useMedia==False : savePath=settings.getLocalSavePath()
+        saveDirectly=settings.getSaveDirectly()
+        if saveDirectly==False: savePath=getPath.getSavePath(settings.getLocalSavePath())
+        if saveDirectly==True : savePath=settings.getLocalSavePath()
         logging.info("save to "+savePath)
         isCalcLocal=settings.isCalcLocal()
         if isCalcLocal==True: logging.debug("Save calced data")
