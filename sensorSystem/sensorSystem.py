@@ -18,7 +18,6 @@ from GetSetting import getSettings as setting
 
 CONFIG_YAML_PATH='//home//pi//sensorSystem//settings.yml'
 SENSOR_YAML_PATH=''
-YAML_PATH='//home//pi//sensorSystem//sensor-data.yml'
 
 print("read settings")
 settings=setting.Setting(CONFIG_YAML_PATH)
