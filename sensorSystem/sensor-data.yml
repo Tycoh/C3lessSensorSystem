@@ -1,0 +1,6 @@
+Items:
+    -
+        sensorSN: 1033caa
+        sensorType: ClampCurrentSensor2-100A
+        Unit: Ampere
+    

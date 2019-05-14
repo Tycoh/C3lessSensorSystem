@@ -1,0 +1,7 @@
+pyyaml>=5.0
+AWSIoTPythonSDK>=1.4.0
+m2x>5.0.0
+boto3>1.9.0
+requests>2.0
+pyserial>=3.4
+rpi.gpio>0.6

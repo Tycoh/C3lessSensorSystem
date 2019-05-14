@@ -1,0 +1,20 @@
+[Unit]
+Description = Start sensor system
+After=network-online.target
+After=udev.target
+After=getty.target
+After=dbus.target
+After=multi-user.target
+
+[Service]
+ExecStart = /bin/sh /home/pi/sensorSystem/shellScripts/startPython.sh
+Restart = always
+Type = simple
+User=pi
+
+[Install]
+WantedBy=network-online.target
+WantedBy=multi-user.target
+WantedBy=udev.target
+WantedBy=getty.target
+WantedBy=dbus.target

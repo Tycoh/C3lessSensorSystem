@@ -1,0 +1,52 @@
+Resources:
+  Globals:
+    #constants of serial
+    SerialSpeed: 115200
+    SerialTimeOut: 1
+    #wating time 
+    WaitTime: 0.001
+    #format of timestamp
+    TimestampFormat: '%Y/%m/%d %H:%M:%S'
+    #path of YAML file which about sensor
+    SensorDefinisionYAML: /home/pi/sensorSystem/sensor-data.yml
+    Log:
+      #choose from DEBUG, INFO, WARNING, or ERROR
+      logLevel: INFO
+      logFormat: "%(asctime)s %(levelname)s %(message)s"
+      logFile: "/home/pi/C3lessSensorSystem/log"
+
+  AWSIoT:
+    #使用する場合はTrueにする。使用しない場合はFalse.以下同様
+    Usage: False
+    Parameters:
+      CertsPath: /home/pi/SensorSystem
+      TopicFilter: <YOUR_TOPIC_FILTER>
+      ClientName: <YOUR_CLIENT_NAME>
+      EndPoint: <YOUR_ENDPOINT>
+
+  M2X:
+    Usage: False
+    Parameters:
+      CalcData: False
+      DeviceID: ""
+      APIKey: ""
+  
+  LocalSave:
+    Usage: False
+    Parameters:  
+      CalcData: False
+      #USBメモリなど外部ストレージをマウントする場合は、/media/pi
+      SavePath: '/media/pi'
+      #SavePathで指定したディレクトリに直接保存するかどうか設定する。
+      #Trueならば、直下に、Falseなら保存可能なディレクトリを探索し、
+      #保存する。
+      SaveDirectory: False
+      
+
+  
+  #User defined API
+  Other:
+    Services:
+      APIKey: ""
+      URL: ""
+    
