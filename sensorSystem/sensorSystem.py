@@ -163,10 +163,12 @@ def main():
 
                         
                     if LocalUsage==True:
+                        PSVoltage=ary[5]
                         timestamp=data.get_timestamp()
                         write_data=[]
                         write_data.append(timestamp)
                         write_data.append(sensorSN)
+                        write_data.append(PSVoltage)
                         write_data.extend(writeData)
                         logging.debug(write_data)
                         sensor.csv_writer.csv_write(savePath,u'data',write_data)
