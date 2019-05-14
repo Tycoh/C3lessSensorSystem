@@ -8,12 +8,12 @@ Resources:
     #format of timestamp
     TimestampFormat: '%Y/%m/%d %H:%M:%S'
     #path of YAML file which about sensor
-    SensorDefinisionYAML: /home/pi/C3lessSensorSystem/sensor-data.yml
+    SensorDefinisionYAML: /home/pi/C3lessSensorSystem/sensorSystem/sensor-data.yml
     Log:
       #choose from DEBUG, INFO, WARNING, or ERROR
       logLevel: INFO
       logFormat: "%(asctime)s %(levelname)s %(message)s"
-      logFile: "/home/pi/C3lessSensorSystem/log"
+      logFile: "/home/pi/C3lessSensorSystem/sensorSystem/log/sensorSystem.log"
 
   AWSIoT:
     #使用する場合はTrueにする。使用しない場合はFalse.以下同様
@@ -32,9 +32,9 @@ Resources:
       APIKey: ""
   
   LocalSave:
-    Usage: False
+    Usage: True
     Parameters:  
-      CalcData: False
+      CalcData: True
       #USBメモリなど外部ストレージをマウントする場合は、/media/pi
       SavePath: '/media/pi'
       #SavePathで指定したディレクトリに直接保存するかどうか設定する。

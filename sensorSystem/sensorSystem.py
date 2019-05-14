@@ -16,12 +16,11 @@ from sensor import getPath
 from GetSetting import getSettings as setting
 
 
-CONFIG_YAML_PATH='//home//pi//sensorSystem//settings.yml'
+SETTING_YAML_PATH='//home//pi//C3lessSensorSystem//sensorSystem//settings.yml'
 SENSOR_YAML_PATH=''
-YAML_PATH='//home//pi//sensorSystem//sensor-data.yml'
 
 print("read settings")
-settings=setting.Setting(CONFIG_YAML_PATH)
+settings=setting.Setting(SETTING_YAML_PATH)
 
 print("setting up log")
 logLevel = settings.getLogLevel()
@@ -95,9 +94,9 @@ try:
     isCalcLocal=False
     if LocalUsage==True:
         logging.info('setting up local save')
-        useMedia=settings.getSaveDirectly()
-        if useMedia==True: savePath=getPath.getSavePath(settings.getLocalSavePath())
-        if useMedia==False : savePath=settings.getLocalSavePath()
+        saveDirectly=settings.getSaveDirectly()
+        if saveDirectly==False: savePath=getPath.getSavePath(settings.getLocalSavePath())
+        if saveDirectly==True : savePath=settings.getLocalSavePath()
         logging.info("save to "+savePath)
         isCalcLocal=settings.isCalcLocal()
         if isCalcLocal==True: logging.debug("Save calced data")
@@ -124,19 +123,20 @@ except Exception as e:
     sys.exit()
 
 def main():
-    S=sensor.serial_check.serial_check(devicePath="ttyUSB*")
-    #get serial port 
-    port=S.get_port()
-    S=None
-    text='setting up serial port\n' + \
-         'speed is ' + str(speed) + ',\n' + \
-         'time out time is ' + str(timeout_time) +',\n'+\
-         'port if ' + str(port)
-    logging.info(text)
-    ser=serial.Serial(port,speed,timeout=timeout_time)
-    
     try:
+        S=sensor.serial_check.serial_check(devicePath="ttyUSB*")
+        #get serial port 
+        port=S.get_port()
+        S=None
+        text='setting up serial port\n' + \
+            'speed is ' + str(speed) + ',\n' + \
+            'time out time is ' + str(timeout_time) +',\n'+\
+            'port if ' + str(port)
+        logging.info(text)
+        ser=serial.Serial(port,speed,timeout=timeout_time)
+        logging.info("start main loop")
         while(1):
+            
             value = ser.readline()
             data=sensor.sensor_data_process.sensor_data(value)
             if data.is_data()==True:
@@ -180,10 +180,11 @@ def main():
             
 
     except  Exception as e:
-        ser.close()
         Err=traceback.format_exc()
         logging.error(e)
         logging.error(Err)
+        ser.close()
+        
 
         sys.exit(0)
 
