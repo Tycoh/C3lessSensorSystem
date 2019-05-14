@@ -16,11 +16,11 @@ from sensor import getPath
 from GetSetting import getSettings as setting
 
 
-CONFIG_YAML_PATH='//home//pi//sensorSystem//settings.yml'
+SETTING_YAML_PATH='//home//pi//C3lessSensorSystem//sensorSystem//settings.yml'
 SENSOR_YAML_PATH=''
 
 print("read settings")
-settings=setting.Setting(CONFIG_YAML_PATH)
+settings=setting.Setting(SETTING_YAML_PATH)
 
 print("setting up log")
 logLevel = settings.getLogLevel()
