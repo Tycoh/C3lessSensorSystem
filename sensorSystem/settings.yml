@@ -8,7 +8,7 @@ Resources:
     #format of timestamp
     TimestampFormat: '%Y/%m/%d %H:%M:%S'
     #path of YAML file which about sensor
-    SensorDefinisionYAML: /home/pi/sensorSystem/sensor-data.yml
+    SensorDefinisionYAML: /home/pi/C3lessSensorSystem/sensor-data.yml
     Log:
       #choose from DEBUG, INFO, WARNING, or ERROR
       logLevel: INFO
@@ -19,7 +19,7 @@ Resources:
     #使用する場合はTrueにする。使用しない場合はFalse.以下同様
     Usage: False
     Parameters:
-      CertsPath: /home/pi/SensorSystem
+      CertsPath: /home/pi/C3lessSensorSystem/certs
       TopicFilter: <YOUR_TOPIC_FILTER>
       ClientName: <YOUR_CLIENT_NAME>
       EndPoint: <YOUR_ENDPOINT>
