@@ -7,7 +7,7 @@ After=dbus.target
 After=multi-user.target
 
 [Service]
-ExecStart = /bin/sh /home/pi/sensorSystem/shellScripts/startPython.sh
+ExecStart = /bin/bash /home/pi/C3lessSensorSystem/sensorSystem/shellScripts/startPython.sh
 Restart = always
 Type = simple
 User=pi
