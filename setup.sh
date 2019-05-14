@@ -2,7 +2,6 @@
 #get update
 echo "update"
 sudo apt -y update
-sudo apt -y upgrade
 sudo apt -y dist-upgrade
 echo "update done"
 
