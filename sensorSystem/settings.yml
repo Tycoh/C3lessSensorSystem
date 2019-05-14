@@ -8,7 +8,7 @@ Resources:
     #format of timestamp
     TimestampFormat: '%Y/%m/%d %H:%M:%S'
     #path of YAML file which about sensor
-    SensorDefinisionYAML: /home/pi/C3lessSensorSystem/sensor-data.yml
+    SensorDefinisionYAML: /home/pi/C3lessSensorSystem/sensorSystem/sensor-data.yml
     Log:
       #choose from DEBUG, INFO, WARNING, or ERROR
       logLevel: INFO
