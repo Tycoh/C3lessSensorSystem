@@ -149,7 +149,7 @@ def main():
                 if ary[3]!="000":
                     #get serial number of sensor
                     sensorSN=data.get_serial_num()
-                    logging.debug(sensorSN)
+                    logging.debug("sensor serial number is "+str(sensorSN))
 
                     #calc data
                     if isCalc==True: 
