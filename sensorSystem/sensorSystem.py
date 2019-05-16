@@ -124,6 +124,7 @@ except Exception as e:
 
 def main():
     try:
+        #get serial device
         S=sensor.serial_check.serial_check(devicePath="ttyUSB*")
         #get serial port 
         port=S.get_port()
@@ -133,10 +134,12 @@ def main():
             'time out time is ' + str(timeout_time) +',\n'+\
             'port if ' + str(port)
         logging.info(text)
+
+        #set serial port
         ser=serial.Serial(port,speed,timeout=timeout_time)
         logging.info("start main loop")
         while(1):
-            
+            #get data from receiver
             value = ser.readline()
             data=sensor.sensor_data_process.sensor_data(value)
             if data.is_data()==True:
@@ -144,8 +147,10 @@ def main():
                 ary=data.responce()
                 logging.debug("data is "+str(ary))
                 if ary[3]!="000":
+                    #get serial number of sensor
                     sensorSN=data.get_serial_num()
                     logging.debug(sensorSN)
+
                     #calc data
                     if isCalc==True: 
                         sendData=data.getCalcedData(SENSOR_YAML_PATH)
@@ -159,9 +164,9 @@ def main():
                         
                     #M2X                    
                     if M2XUsage==True: 
-                        if isCalcM2X==True: m2x.PutValuesM2X(sensorSN,sendData)
-
-                        
+                        m2x.PutValuesM2X(sensorSN,sendData)
+                    
+                    #save to local
                     if LocalUsage==True:
                         PSVoltage=ary[5]
                         timestamp=data.get_timestamp()
