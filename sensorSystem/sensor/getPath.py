@@ -7,4 +7,4 @@ def getSavePath(path):
 
 
 if __name__=='__main__':
-    print(getSavePath())
+    print(getSavePath("/media/pi"))
