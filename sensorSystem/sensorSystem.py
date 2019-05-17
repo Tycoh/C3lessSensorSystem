@@ -124,6 +124,7 @@ except Exception as e:
 
 def main():
     try:
+        #get serial device
         S=sensor.serial_check.serial_check(devicePath="ttyUSB*")
         #get serial port 
         port=S.get_port()
@@ -133,59 +134,67 @@ def main():
             'time out time is ' + str(timeout_time) +',\n'+\
             'port if ' + str(port)
         logging.info(text)
+
+        #set serial port
         ser=serial.Serial(port,speed,timeout=timeout_time)
         logging.info("start main loop")
         while(1):
-            
-            value = ser.readline()
-            data=sensor.sensor_data_process.sensor_data(value)
-            if data.is_data()==True:
-                logging.debug("received data")
-                ary=data.responce()
-                logging.debug("data is "+str(ary))
-                if ary[3]!="000":
-                    sensorSN=data.get_serial_num()
-                    logging.debug(sensorSN)
-                    #calc data
-                    if isCalc==True: 
-                        sendData=data.getCalcedData(SENSOR_YAML_PATH)
-                        writeData=data.getCalcedAry(SENSOR_YAML_PATH)
-                    if isCalc==False:
-                        sendData=data.get_voltage()
-                        writeData=list(data.get_voltage())
+            #try for loop 
+            try: 
+                #get data from receiver
+                value = ser.readline()
+                data=sensor.sensor_data_process.sensor_data(value)
+                if data.is_data()==True:
+                    logging.debug("received data")
+                    ary=data.responce()
+                    logging.debug("data is "+str(ary))
 
-                    #Send data
-                    if AWSIoTUsage==True: sendAWSIoT(ary)
-                        
-                    #M2X                    
-                    if M2XUsage==True: 
-                        if isCalcM2X==True: m2x.PutValuesM2X(sensorSN,sendData)
+                    # do not record first data.
+                    if ary[3]!="000":
+                        #get serial number of sensor
+                        sensorSN=data.get_serial_num()
+                        logging.debug("sensor serial number is "+str(sensorSN))
 
+                        #calc data
+                        if isCalc==True: 
+                            sendData=data.getCalcedData(SENSOR_YAML_PATH)
+                            writeData=data.getCalcedAry(SENSOR_YAML_PATH)
+                        if isCalc==False:
+                            sendData=data.get_voltage()
+                            writeData=list(data.get_voltage())
+
+                        #Send data
+                        if AWSIoTUsage==True: sendAWSIoT(ary)
+                            
+                        #M2X                    
+                        if M2XUsage==True: 
+                            m2x.PutValuesM2X(sensorSN,sendData)
                         
-                    if LocalUsage==True:
-                        PSVoltage=ary[5]
-                        timestamp=data.get_timestamp()
-                        write_data=[]
-                        write_data.append(timestamp)
-                        write_data.append(sensorSN)
-                        write_data.append(PSVoltage)
-                        write_data.extend(writeData)
-                        logging.debug(write_data)
-                        sensor.csv_writer.csv_write(savePath,u'data',write_data)
-                
+                        #save to local
+                        if LocalUsage==True:
+                            PSVoltage=ary[5]
+                            timestamp=data.get_timestamp()
+                            write_data=[]
+                            write_data.append(timestamp)
+                            write_data.append(sensorSN)
+                            write_data.append(PSVoltage)
+                            write_data.extend(writeData)
+                            logging.debug(write_data)
+                            sensor.csv_writer.csv_write(savePath,u'data',write_data)
                     
-                
-            data=None
-            sleep(WAIT_TIME)
-            
+                data=None
+                sleep(WAIT_TIME)
+            #exception for loop.
+            except Exception as e:
+                Err=traceback.format_exc()
+                logging.error(e)
+                logging.error(Err)
 
     except  Exception as e:
         Err=traceback.format_exc()
         logging.error(e)
         logging.error(Err)
         ser.close()
-        
-
         sys.exit(0)
 
 def sendAWSIoT(ary):
