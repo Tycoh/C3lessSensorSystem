@@ -114,9 +114,9 @@ try:
         SENSOR_YAML_PATH=settings.getSensorDataPath()
         logging.debug(SENSOR_YAML_PATH)
 
-    logging.debug("this is sensor data")
-    with open(SENSOR_YAML_PATH) as f:
-        logging.debug(yaml.safe_load(f))
+        logging.debug("this is sensor data")
+        with open(SENSOR_YAML_PATH) as f:
+            logging.debug(yaml.safe_load(f))
 
 except Exception as e:
     logging.error(e)
