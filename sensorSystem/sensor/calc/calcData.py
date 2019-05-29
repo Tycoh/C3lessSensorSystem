@@ -79,7 +79,7 @@ class getCalcedData(calcDatas):
         sensorType=__S.getSensorType(__sn)
         
         # raise error if sensorSn is not registered
-        if sensorType==None: raise KeyError("sensorSN " + str(__sn)+ " is not registered in sensor-data.yml")
+        if sensorType==None: raise KeyError("sensorSN " + str(__sn)+ " is not registered in "+ymlPath)
         
         print("sensorType is "+ sensorType)
         __lst=[]
