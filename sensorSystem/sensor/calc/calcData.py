@@ -1,4 +1,4 @@
-# -*- co(self,ding: utf-8 -*-
+#Coding -*- coding: utf-8 -*-
 
 ThresholdValue=10
 if __name__=='__main__':
