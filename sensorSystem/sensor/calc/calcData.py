@@ -95,7 +95,7 @@ class getCalcedData(calcDatas):
             __lst.append(self.calcTCurrent006to20A(self.ary[8],self.ary[6]))
             __lst.append(__S.getSensorUnit(__sn))
 
-        if sensorType=="TCTemplatureSensor":
+        if sensorType=="TCTemperatureSensor":
             __lst.append(self.getTCTemplature())
             __lst.append(__S.getSensorUnit(__sn))
         print("calced list is "+ str(__lst))
