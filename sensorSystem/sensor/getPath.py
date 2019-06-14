@@ -11,4 +11,4 @@ def getSavePath(path):
     raise IOError("There is not directory")
 
 if __name__=='__main__':
-    print(getSavePath('C://Users//tetsuro//Desktop//test'))
+    print(getSavePath('/home/pi'))
