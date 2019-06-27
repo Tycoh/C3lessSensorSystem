@@ -12,7 +12,7 @@ sudo apt -y install rpi-update
 sudo apt -y install python3-pip
 sudo apt -y install git
 sudo apt -y install python-dev
-sudo apt-get install exfat-fuse exfat-utils
+sudo apt -y install exfat-fuse exfat-utils
 echo "apt install done"
 #install python modules
 echo "start install with pip"

@@ -1,4 +1,4 @@
-# -*- co(self,ding: utf-8 -*-
+#Coding -*- coding: utf-8 -*-
 
 ThresholdValue=10
 if __name__=='__main__':
@@ -79,7 +79,7 @@ class getCalcedData(calcDatas):
         sensorType=__S.getSensorType(__sn)
         
         # raise error if sensorSn is not registered
-        if sensorType==None: raise KeyError("sensorSN " + str(__sn)+ " is not registered in sensor-data.yml")
+        if sensorType==None: raise KeyError("sensorSN " + str(__sn)+ " is not registered in "+ymlPath)
         
         print("sensorType is "+ sensorType)
         __lst=[]
@@ -95,7 +95,7 @@ class getCalcedData(calcDatas):
             __lst.append(self.calcTCurrent006to20A(self.ary[8],self.ary[6]))
             __lst.append(__S.getSensorUnit(__sn))
 
-        if sensorType=="TCTemplatureSensor":
+        if sensorType=="TCTemperatureSensor":
             __lst.append(self.getTCTemplature())
             __lst.append(__S.getSensorUnit(__sn))
         print("calced list is "+ str(__lst))

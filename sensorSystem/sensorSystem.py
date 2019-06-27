@@ -54,8 +54,11 @@ try:
         CERT_DIR=settings.getCertPath()
         logging.debug("cert is in " + CERT_DIR)
         CA_Path=sensor.getCertsPath.getPath(CERT_DIR,'*CA*')
+        logging.debug("rootCA file is "+CA_Path)
         CertPath=sensor.getCertsPath.getPath(CERT_DIR,'*cert*')
+        logging.debug("cert file is "+CertPath)
         PrivateKeyPath=sensor.getCertsPath.getPath(CERT_DIR,'*private*')
+        logging.debug("private key is "+PrivateKeyPath)
         END_POINT=settings.getEndPoint()
         TOPIC_FOR_SENSOR=settings.getTopic()
         CLIENT_NAME=settings.getClientName()
@@ -114,9 +117,9 @@ try:
         SENSOR_YAML_PATH=settings.getSensorDataPath()
         logging.debug(SENSOR_YAML_PATH)
 
-    logging.debug("this is sensor data")
-    with open(SENSOR_YAML_PATH) as f:
-        logging.debug(yaml.safe_load(f))
+        logging.debug("this is sensor data")
+        with open(SENSOR_YAML_PATH) as f:
+            logging.debug(yaml.safe_load(f))
 
 except Exception as e:
     logging.error(e)
@@ -161,7 +164,8 @@ def main():
                             writeData=data.getCalcedAry(SENSOR_YAML_PATH)
                         if isCalc==False:
                             sendData=data.get_voltage()
-                            writeData=list(data.get_voltage())
+                            writeData=[]
+                            writeData.append(data.get_voltage())
 
                         #Send data
                         if AWSIoTUsage==True: sendAWSIoT(ary)
