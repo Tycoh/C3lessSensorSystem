@@ -6,6 +6,7 @@ import yaml
 from time import sleep
 import logging
 from datetime import datetime
+from rp_status import rp_status
 
 #installed modules
 import serial
@@ -18,6 +19,10 @@ from GetSetting import getSettings as setting
 
 SETTING_YAML_PATH='//home//pi//C3lessSensorSystem//sensorSystem//settings.yml'
 SENSOR_YAML_PATH=''
+
+
+RPiSN=rp_status.get_serialnum()
+print("This raspberry Pi serial nuber is" + RPiSN )
 
 print("read settings")
 settings=setting.Setting(SETTING_YAML_PATH)
@@ -54,11 +59,8 @@ try:
         CERT_DIR=settings.getCertPath()
         logging.debug("cert is in " + CERT_DIR)
         CA_Path=sensor.getCertsPath.getPath(CERT_DIR,'*CA*')
-        logging.debug("rootCA file is "+CA_Path)
         CertPath=sensor.getCertsPath.getPath(CERT_DIR,'*cert*')
-        logging.debug("cert file is "+CertPath)
         PrivateKeyPath=sensor.getCertsPath.getPath(CERT_DIR,'*private*')
-        logging.debug("private key is "+PrivateKeyPath)
         END_POINT=settings.getEndPoint()
         TOPIC_FOR_SENSOR=settings.getTopic()
         CLIENT_NAME=settings.getClientName()
@@ -117,9 +119,9 @@ try:
         SENSOR_YAML_PATH=settings.getSensorDataPath()
         logging.debug(SENSOR_YAML_PATH)
 
-        logging.debug("this is sensor data")
-        with open(SENSOR_YAML_PATH) as f:
-            logging.debug(yaml.safe_load(f))
+    logging.debug("this is sensor data")
+    with open(SENSOR_YAML_PATH) as f:
+        logging.debug(yaml.safe_load(f))
 
 except Exception as e:
     logging.error(e)
@@ -164,8 +166,7 @@ def main():
                             writeData=data.getCalcedAry(SENSOR_YAML_PATH)
                         if isCalc==False:
                             sendData=data.get_voltage()
-                            writeData=[]
-                            writeData.append(data.get_voltage())
+                            writeData=list(data.get_voltage())
 
                         #Send data
                         if AWSIoTUsage==True: sendAWSIoT(ary)
@@ -205,7 +206,8 @@ def sendAWSIoT(ary):
     client.publish(
         topic=TOPIC_FOR_SENSOR,
         Timestamp=datetime.now().strftime(TIMESTAMP_FORMAT),
-        sensorData=ary
+        sensorData=ary,
+        RPiSN=RPiSN
         )
     return "successed to send topic AWS IoT"
             
