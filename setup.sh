@@ -16,8 +16,8 @@ sudo apt -y install exfat-fuse exfat-utils
 echo "apt install done"
 #install python modules
 echo "start install with pip"
-sudo pip3 install setuptools
-sudo pip3 install -r ./sensorSystem/update/requirements.txt
+yes | sudo pip3 install setuptools
+yes | sudo pip3 install -r ./sensorSystem/update/requirements.txt
 sudo apt -y install python3-pandas
 echo "install phase had done successfully"
 
