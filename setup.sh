@@ -33,5 +33,9 @@ echo "register as system"
 sudo mv /home/pi/C3lessSensorSystem/sensorSystem/configs/startPython.service /etc/systemd/system/startPython.service
 sudo systemctl enable startPython
 sudo systemctl start startPython
+
+echo "set parmission as 755"
+chmod 755 ~/C3lessSensorSystem
+
 echo "system done"
 echo "setup had done successfully"
