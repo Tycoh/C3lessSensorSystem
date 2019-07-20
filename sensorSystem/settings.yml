@@ -19,7 +19,7 @@ Resources:
     #使用する場合はTrueにする。使用しない場合はFalse.以下同様
     Usage: False
     Parameters:
-      CertsPath: /home/pi/C3lessSensorSystem/certs
+      CertsPath: /home/pi/C3lessSensorSystem/sensorSystem/certs
       TopicFilter: <YOUR_TOPIC_FILTER>
       ClientName: <YOUR_CLIENT_NAME>
       EndPoint: <YOUR_ENDPOINT>
