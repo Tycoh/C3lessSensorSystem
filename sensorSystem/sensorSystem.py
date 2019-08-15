@@ -155,7 +155,7 @@ def main():
                     logging.debug("data is "+str(ary))
 
                     # do not record first data.
-                    if ary[3]!="000":
+                    if (ary[3]!="000" and len(ary[4])==7):
                         #get serial number of sensor
                         sensorSN=data.get_serial_num()
                         logging.debug("sensor serial number is "+str(sensorSN))
