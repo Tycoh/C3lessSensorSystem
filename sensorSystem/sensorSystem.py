@@ -166,7 +166,8 @@ def main():
                             writeData=data.getCalcedAry(SENSOR_YAML_PATH)
                         if isCalc==False:
                             sendData=data.get_voltage()
-                            writeData=list(data.get_voltage())
+                            writeData=[]
+                            writeData.append(data.get_voltage())
 
                         #Send data
                         if AWSIoTUsage==True: sendAWSIoT(ary)
