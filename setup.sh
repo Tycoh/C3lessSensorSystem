@@ -23,7 +23,8 @@ sudo apt -y install python3-pandas
 echo "install phase had done successfully"
 
 #set up C3lessSensorSystem
-sudo chmod -R +x /home/pi/C3lessSensorSystem
+sudo chmod -R +x /home/pi/C3lessSensorSystem/sensorSystem
+mkdir log
 
 #get RootCA
 echo "getting rootCA for AWS"
