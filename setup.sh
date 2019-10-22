@@ -23,16 +23,16 @@ sudo apt -y install python3-pandas
 echo "install phase had done successfully"
 
 #set up C3lessSensorSystem
-sudo chmod -R +x /home/pi/C3lessSensorSystem/sensorSystem
-mkdir /home/pi/C3lessSensorSystem/sensorSystem/log
+sudo chmod -R +x ./C3lessSensorSystem
+mkdir ./C3lessSensorSystem/sensorSystem/log
 
 #get RootCA
 echo "getting rootCA for AWS"
-wget https://www.amazontrust.com/repository/AmazonRootCA1.pem -P /home/pi/C3lessSensorSystem/sensorSystem/certs
+wget https://www.amazontrust.com/repository/AmazonRootCA1.pem -P ./C3lessSensorSystem/sensorSystem/certs
 
 #register systems
 echo "register as system" 
-sudo mv /home/pi/C3lessSensorSystem/sensorSystem/configs/startPython.service /etc/systemd/system/startPython.service
+sudo mv ./C3lessSensorSystem/sensorSystem/configs/startPython.service /etc/systemd/system/startPython.service
 sudo systemctl enable startPython
 sudo systemctl start startPython
 
