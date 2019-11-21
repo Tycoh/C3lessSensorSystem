@@ -28,7 +28,7 @@ mkdir ./sensorSystem/log
 
 #get RootCA
 echo "getting rootCA for AWS"
-wget https://www.amazontrust.com/repository/AmazonRootCA1.pem -P ~/sensorSystem/certs
+wget https://www.amazontrust.com/repository/AmazonRootCA1.pem -P ./sensorSystem/certs
 
 #register systems
 echo "register as system" 
