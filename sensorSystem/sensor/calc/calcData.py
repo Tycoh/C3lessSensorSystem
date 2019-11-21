@@ -98,8 +98,11 @@ class getCalcedData(calcDatas):
         if sensorType=="TCTemperatureSensor":
             __lst.append(self.getTCTemplature())
             __lst.append(__S.getSensorUnit(__sn))
+        if sensorType=="ADXL34xAccSensor":
+            __lst.extend(self.getADXL34x())
         print("calced list is "+ str(__lst))
         return __lst
+        
     
     def getCalcedData(self,ymlPath):
         __lst=self.getCalcedAry(ymlPath)
