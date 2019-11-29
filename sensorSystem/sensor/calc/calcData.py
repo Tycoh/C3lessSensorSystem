@@ -35,15 +35,8 @@ class calcDatas:
     
     def calcCurrent2to100A(self,voltage,lowVoltage):
         __lowVoltage=float(lowVoltage)
-        __voltage=float(voltage)        
-        #if voltage belows thereshould value, calculate data with lowvoltage.
-        #but accurancy will be low.
-        if __voltage<ThresholdValue :
-            CalcedData=0.0003*__lowVoltage*__lowVoltage + \
-            0.0352*__lowVoltage + 1.0133
-            
-        if __voltage>=ThresholdValue: 
-            CalcedData=0.1321*__voltage+2.6758
+        __voltage=float(voltage)
+        CalcedData=0.1321*__voltage+2.6758
         CalcedData="{:.3}".format(CalcedData)
         return CalcedData
     
