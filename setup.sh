@@ -8,7 +8,6 @@ echo "update done"
 # install modules
 echo "starting install"
 echo "install with apt"
-sudo apt -y install rpi-update
 sudo apt -y install python3-pip
 sudo apt -y install git
 sudo apt -y install python-dev
