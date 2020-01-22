@@ -8,7 +8,6 @@ echo "update done"
 # install modules
 echo "starting install"
 echo "install with apt"
-sudo apt -y install rpi-update
 sudo apt -y install python3-pip
 sudo apt -y install git
 sudo apt -y install python-dev
@@ -28,7 +27,7 @@ mkdir ./sensorSystem/log
 
 #get RootCA
 echo "getting rootCA for AWS"
-wget https://www.amazontrust.com/repository/AmazonRootCA1.pem -P ~/sensorSystem/certs
+wget https://www.amazontrust.com/repository/AmazonRootCA1.pem -P ./sensorSystem/certs
 
 #register systems
 echo "register as system" 
